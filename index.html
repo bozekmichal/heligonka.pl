@@ -17,10 +17,17 @@
   <nav id="navbar">
     <a href="#hero" class="nav-brand">M. <span>Czerwiński</span></a>
     <ul class="nav-links">
-      <li><a href="#about">O mnie</a></li>
-      <li><a href="#services">Oferta</a></li>
-      <li><a href="#contact">Kontakt</a></li>
+      <li><a href="index.html" class="nav-active">Hej!</a></li>
+      <li><a href="dejcie-spokol.html">Dejcie Spokój</a></li>
+      <li><a href="aktywnosci.html">Moje aktywności</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
     </ul>
+    <a href="tel:+48516875013" class="nav-phone">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 2h2.5l1 2.5-1.5 1.5c.9 1.8 2 2.9 3.8 3.8L9.5 8.5 12 9.5v2.5C7 13 0 6 2 2z" fill="#d64030"/>
+      </svg>
+      516 875 013
+    </a>
   </nav>
 
   <!-- ═══════════════════════════════════════════
@@ -237,12 +244,53 @@
   </section>
 
   <!-- ═══════════════════════════════════════════
+       HELIGONKA
+  ════════════════════════════════════════════ -->
+  <section id="heligonka">
+    <div class="heligonka-inner">
+
+      <!-- LEFT: text -->
+      <div class="heligonka-text fade-up">
+        <span class="section-eyebrow">Instrument</span>
+        <h2 class="heligonka-heading">
+          Kilka słów<br>o <em>heligonce</em>
+        </h2>
+        <p class="heligonka-body">
+          Heligonka to rodzaj akordeonu, który brzmi inaczej przy ściskaniu
+          i rozciąganiu miecha — ten naturalny puls czyni ją wyjątkową.
+          Jest nieodłącznym głosem muzyki beskidzkiej i karpackiej,
+          a jej szorstka barwa idealnie oddaje klimat górskich przyśpiewek i tańców.
+        </p>
+      </div>
+
+      <!-- RIGHT: video thumbnail -->
+      <div class="heligonka-video fade-up d1">
+        <div class="video-thumb-wrap">
+          <span class="video-corner-bl"></span>
+          <span class="video-corner-br"></span>
+          <a href="https://www.youtube.com/watch?v=iWn8t__qAv4&t=26s" target="_blank" rel="noopener noreferrer" class="video-thumb-link" id="videoThumbLink">
+            <img src="brand_assets/video.png" alt="Obejrzyj film o heligonce na YouTube" class="video-thumb-img">
+            <div class="video-bubbles" id="videoBubbles"></div>
+            <div class="video-overlay"></div>
+            <span class="video-play-btn">
+              <svg viewBox="0 0 96 96" fill="white" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M48 0a48 48 0 1 0 .001 0zm-12 30 28 18-28 18z"/>
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
        SERVICES
   ════════════════════════════════════════════ -->
   <section id="services">
     <div class="services-header fade-up">
       <span class="section-eyebrow">Oferta</span>
-      <h2 class="section-title">Czym mogę służyć</h2>
+      <h2 class="section-title">Co mogę dla ciebie zrobić</h2>
       <!-- Folk divider -->
       <div class="section-ornament">
         <svg width="200" height="20" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -253,14 +301,12 @@
           <line x1="120" y1="10" x2="200" y2="10" stroke="#b83228" stroke-width="0.7" stroke-opacity="0.5"/>
         </svg>
       </div>
-      <p class="section-sub">Indywidualnie dopasowane do Twoich potrzeb i możliwości</p>
     </div>
 
     <div class="cards">
 
       <!-- Card 1 -->
-      <div class="card fade-up">
-        <span class="card-number">01</span>
+      <a href="#contact" class="card fade-up">
         <div class="card-icon">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="20" cy="20" r="18" stroke="#b83228" stroke-width="1.2" stroke-opacity="0.5"/>
@@ -273,21 +319,16 @@
           </svg>
         </div>
         <h3 class="card-title">Lekcje Indywidualne</h3>
-        <span class="card-sub">Private Lessons</span>
-        <p class="card-text">
-          Zajęcia jeden na jeden — od podstaw po zaawansowany repertuar.
-          Program dostosowany do tempa i celów ucznia. Nauka gry na heligonce,
-          teoria muzyki ludowej, praca nad rytmiką i ornamentacją.
-        </p>
+        <p class="card-text">Zajęcia jeden na jeden — od podstaw po zaawansowany repertuar. Program dostosowany do tempa i celów ucznia. Nauka gry na heligonce, teoria muzyki ludowej, praca nad rytmiką i ornamentacją.</p>
+        <span class="card-cta">Skontaktuj się</span>
         <svg class="card-corner-gem" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <polygon points="24 2 46 24 24 46 2 24" fill="#d64030"/>
           <polygon points="24 10 38 24 24 38 10 24" fill="#b83228"/>
         </svg>
-      </div>
+      </a>
 
       <!-- Card 2 -->
-      <div class="card fade-up d1">
-        <span class="card-number">02</span>
+      <a href="#contact" class="card fade-up d1">
         <div class="card-icon">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <polygon points="20 2 38 12 38 28 20 38 2 28 2 12" stroke="#b83228" stroke-width="1.2" fill="none" stroke-opacity="0.5"/>
@@ -298,21 +339,16 @@
           </svg>
         </div>
         <h3 class="card-title">Warsztaty Grupowe</h3>
-        <span class="card-sub">Group Workshops</span>
-        <p class="card-text">
-          Dynamiczne warsztaty dla grup — szkół, stowarzyszeń kulturalnych
-          i festiwali folkowych. Wspólna nauka pieśni, tańców i technik gry.
-          Idealne dla tych, którzy chcą odkryć tradycję w towarzystwie.
-        </p>
+        <p class="card-text">Dynamiczne warsztaty dla grup — szkół, stowarzyszeń kulturalnych i festiwali folkowych. Wspólna nauka pieśni, tańców i technik gry. Idealne dla tych, którzy chcą odkryć tradycję w towarzystwie.</p>
+        <span class="card-cta">Skontaktuj się</span>
         <svg class="card-corner-gem" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <polygon points="24 2 46 24 24 46 2 24" fill="#d64030"/>
           <polygon points="24 10 38 24 24 38 10 24" fill="#b83228"/>
         </svg>
-      </div>
+      </a>
 
       <!-- Card 3 -->
-      <div class="card fade-up d2">
-        <span class="card-number">03</span>
+      <a href="#contact" class="card fade-up d2">
         <div class="card-icon">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="3" y="3" width="34" height="34" stroke="#b83228" stroke-width="1.2" stroke-opacity="0.5"/>
@@ -322,17 +358,78 @@
           </svg>
         </div>
         <h3 class="card-title">Występy i Koncerty</h3>
-        <span class="card-sub">Performances & Concerts</span>
-        <p class="card-text">
-          Solowe recitale i koncerty z zespołem na scenach folkowych,
-          festiwalach, weselach i uroczystościach. Autentyczny dźwięk
-          heligonki, który przenosi słuchaczy w serce Karpat.
-        </p>
+        <p class="card-text">Solowe recitale i koncerty z zespołem na scenach folkowych, festiwalach, weselach i uroczystościach. Autentyczny dźwięk heligonki, który przenosi słuchaczy w serce Beskidu.</p>
+        <span class="card-cta">Skontaktuj się</span>
         <svg class="card-corner-gem" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
           <polygon points="24 2 46 24 24 46 2 24" fill="#d64030"/>
           <polygon points="24 10 38 24 24 38 10 24" fill="#b83228"/>
         </svg>
-      </div>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="#" class="card fade-up">
+        <div class="card-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="10" width="32" height="22" rx="2" stroke="#b83228" stroke-width="1.2" stroke-opacity="0.5"/>
+            <rect x="9" y="15" width="22" height="12" rx="1" stroke="#b83228" stroke-width="0.8"/>
+            <line x1="4" y1="17" x2="36" y2="17" stroke="#b83228" stroke-width="0.6" stroke-opacity="0.4"/>
+            <circle cx="20" cy="23" r="3" fill="#d64030"/>
+            <line x1="14" y1="10" x2="14" y2="6" stroke="#b83228" stroke-width="1.2"/>
+            <line x1="26" y1="10" x2="26" y2="6" stroke="#b83228" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Sklep Heligonki.pl</h3>
+        <p class="card-text">Nuty, nagrania i akcesoria dla miłośników muzyki ludowej. W sklepie znajdziesz materiały do nauki, nagrania tradycyjnych melodii oraz wszystko, czego potrzeba do gry na heligonce.</p>
+        <span class="card-cta">Przejdź do sklepu</span>
+        <svg class="card-corner-gem" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="24 2 46 24 24 46 2 24" fill="#d64030"/>
+          <polygon points="24 10 38 24 24 38 10 24" fill="#b83228"/>
+        </svg>
+      </a>
+
+      <!-- Card 5 -->
+      <a href="#contact" class="card fade-up d1">
+        <div class="card-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="16" stroke="#b83228" stroke-width="1.2" stroke-opacity="0.5"/>
+            <path d="M13 20 Q20 10 27 20 Q20 30 13 20Z" stroke="#b83228" stroke-width="0.8" fill="none"/>
+            <line x1="20" y1="4"  x2="20" y2="8"  stroke="#b83228" stroke-width="1.5"/>
+            <line x1="20" y1="32" x2="20" y2="36" stroke="#b83228" stroke-width="1.5"/>
+            <line x1="4"  y1="20" x2="8"  y2="20" stroke="#b83228" stroke-width="1.5"/>
+            <line x1="32" y1="20" x2="36" y2="20" stroke="#b83228" stroke-width="1.5"/>
+            <circle cx="20" cy="20" r="3" fill="#d64030"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Serwis i Naprawa</h3>
+        <p class="card-text">Profesjonalna naprawa i regulacja heligonek oraz akordeonu guzikowego. Dbam o to, by instrument brzmiał tak, jak powinien — czysto, pewnie i z pełnią góralskiego charakteru.</p>
+        <span class="card-cta">Skontaktuj się</span>
+        <svg class="card-corner-gem" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="24 2 46 24 24 46 2 24" fill="#d64030"/>
+          <polygon points="24 10 38 24 24 38 10 24" fill="#b83228"/>
+        </svg>
+      </a>
+
+      <!-- Card 6 -->
+      <a href="dejcie-spokol.html" class="card fade-up d2">
+        <div class="card-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="14" r="5" stroke="#b83228" stroke-width="1.2" stroke-opacity="0.5"/>
+            <circle cx="28" cy="14" r="5" stroke="#b83228" stroke-width="1.2" stroke-opacity="0.5"/>
+            <circle cx="20" cy="26" r="5" stroke="#b83228" stroke-width="1.2"/>
+            <circle cx="12" cy="14" r="2" fill="#d64030" opacity="0.7"/>
+            <circle cx="28" cy="14" r="2" fill="#d64030" opacity="0.7"/>
+            <circle cx="20" cy="26" r="2" fill="#d64030"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Kapela „Dejcie Spokój"</h3>
+        <p class="card-text">Współtworzę kapelę „Dejcie Spokój" — skład, który gra muzykę beskidzką z pasją i przymrużeniem oka. Zapraszamy na koncerty, festiwale i prywatne uroczystości.</p>
+        <span class="card-cta">Dowiedz się więcej</span>
+        <svg class="card-corner-gem" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="24 2 46 24 24 46 2 24" fill="#d64030"/>
+          <polygon points="24 10 38 24 24 38 10 24" fill="#b83228"/>
+        </svg>
+      </a>
+
     </div>
   </section>
 
@@ -365,15 +462,27 @@
       </p>
 
       <div class="contact-cta">
-        <a href="mailto:kontakt@maksymilanczerwiński.pl" class="btn-red">
-          Napisz wiadomość
+        <a href="tel:+48516875013" class="contact-phone">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 3h4l2 4-2.5 2c1.5 3 3.5 5 6.5 6.5L15 13l4 2v4c-10 1.5-18-6.5-16-16z" fill="#fff" fill-opacity="0.15" stroke="#fff" stroke-width="1"/>
+          </svg>
+          516 875 013
         </a>
         <div class="contact-links">
-          <a href="tel:+48000000000" class="contact-link">
+          <a href="#contact" class="contact-link">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2 2h3l1.5 3L5 6.5c1 2 2.5 3.5 4.5 4.5L11 9.5l3 1.5v3c-7 1-13-5-12-12z" stroke="#b83228" stroke-width="1" fill="none"/>
+              <path d="M1 3h12v9H1zM1 3l6 5 6-5" stroke="#b83228" stroke-width="1" fill="none"/>
             </svg>
-            Zadzwoń
+            Napisz do mnie
+          </a>
+          <a href="https://www.youtube.com/@heligonkapl/featured" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="2" width="12" height="9" rx="1" stroke="#b83228" stroke-width="1" fill="none"/>
+              <path d="M4 5.5l2.5 2 2.5-2" stroke="#b83228" stroke-width="1" stroke-linecap="round"/>
+              <line x1="4" y1="8" x2="6" y2="8" stroke="#b83228" stroke-width="1"/>
+              <polygon points="9,11 14,8 14,14" fill="#b83228"/>
+            </svg>
+            YouTube
           </a>
           <a href="#" class="contact-link">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -382,12 +491,6 @@
               <circle cx="10.5" cy="3.5" r="0.75" fill="#b83228"/>
             </svg>
             Instagram
-          </a>
-          <a href="#" class="contact-link">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 3h12v9H1zM1 3l6 5 6-5" stroke="#b83228" stroke-width="1" fill="none"/>
-            </svg>
-            Facebook
           </a>
         </div>
       </div>
@@ -416,98 +519,16 @@
     <span class="footer-copy">
       © 2024 Maksymilian Czerwiński — Muzyk & Instruktor
     </span>
-    <div class="footer-gems">
-      <span class="footer-gem"></span>
-      <span class="footer-gem"></span>
-      <span class="footer-gem"></span>
+    <div class="footer-right">
+      <div class="footer-gems">
+        <span class="footer-gem"></span>
+        <span class="footer-gem"></span>
+        <span class="footer-gem"></span>
+      </div>
+      <span class="footer-made">Strone zrobił <a href="https://flashboard.pl" target="_blank" rel="noopener noreferrer">Bożek</a></span>
     </div>
   </footer>
 
-  <!-- ═══════════════════════════════════════════
-       JAVASCRIPT
-  ════════════════════════════════════════════ -->
-  <script>
-    // Nav scroll state
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 60);
-    }, { passive: true });
-
-    // Intersection Observer — fade-up
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-    // Subtle hero parallax on photo
-    const photoWrap = document.getElementById('photoWrap');
-    if (photoWrap && window.matchMedia('(min-width: 860px)').matches) {
-      window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        const parallaxVal = scrolled * 0.12;
-        photoWrap.style.transform = `translateY(${parallaxVal}px)`;
-      }, { passive: true });
-    }
-
-    // Shimmer on folk ornaments
-    const shimmerEls = document.querySelectorAll('.shimmer-ornament');
-    shimmerEls.forEach(el => {
-      el.style.animation = 'shimmer 4s ease-in-out infinite';
-    });
-
-    // Music bubbles
-    (function() {
-      const symbols = [
-        // ósemka
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor"><path d="M512 55L512 217C509.1 217.7 466.4 228.4 384 249L384 464C384 517 333.9 560 272 560C210.1 560 160 517 160 464C160 411 210.1 368 272 368C289.2 368 305.5 371.3 320 377.2L320 103L344.2 97C444.3 71.9 500.2 58 512 55z"/></svg>',
-        // dwie ósemki połączone
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor"><path d="M544 56.1L544 400C544 444.2 501 480 448 480C395 480 352 444.2 352 400C352 355.8 395 320 448 320C459.2 320 470 321.6 480 324.6L480 207.9L256 257.7L256 464C256 508.2 213 544 160 544C107 544 64 508.2 64 464C64 419.8 107 384 160 384C171.2 384 182 385.6 192 388.6L192 134.4L217.1 128.8L505.1 64.8L544 56.1z"/></svg>',
-        // serce
-        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor"><path d="M305 151.1L320 171.8L335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1L576 231.7C576 343.9 436.1 474.2 363.1 529.9C350.7 539.3 335.5 544 320 544C304.5 544 289.2 539.4 276.9 529.9C203.9 474.2 64 343.9 64 231.7L64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1z"/></svg>',
-      ];
-
-      const container = document.getElementById('musicBubbles');
-      const COUNT = 18;
-
-      for (let i = 0; i < COUNT; i++) {
-        const el = document.createElement('div');
-        el.className = 'music-bubble';
-
-        const size    = 22 + Math.random() * 58;          // 22–80px
-        const left    = 2  + Math.random() * 96;          // 2–98%
-        const dur     = 12 + Math.random() * 18;          // 12–30s
-        const delay   = -(Math.random() * dur);            // pre-offset
-        const opacity = 0.07 + Math.random() * 0.13;      // 0.07–0.20
-
-        const spinDur  = 6 + Math.random() * 10;
-        const spinDir  = Math.random() > 0.5 ? 1 : -1;
-
-        el.style.cssText = `
-          left:${left}%;
-          width:${size}px; height:${size}px;
-          animation-duration:${dur}s;
-          animation-delay:${delay}s;
-          --bbl-opacity:${opacity.toFixed(2)};
-        `;
-
-        const inner = document.createElement('span');
-        inner.className = 'music-bubble-inner';
-        inner.style.cssText = `
-          --spin-dur:${spinDur}s;
-          animation-direction:${spinDir === 1 ? 'normal' : 'reverse'};
-          animation-delay:${delay}s;
-        `;
-        inner.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-        el.appendChild(inner);
-        container.appendChild(el);
-      }
-    })();
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>

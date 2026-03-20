@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moje Aktywności — Maksymilian Czerwiński</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── MASONRY GALLERY ── */
+    .gallery-masonry {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 170px;
+      gap: 5px;
+    }
+    .gm-item {
+      position: relative;
+      overflow: hidden;
+      cursor: zoom-in;
+      background: var(--navy-light);
+    }
+    .gm-item.gm-featured {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .gm-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s;
+      filter: brightness(0.82);
+    }
+    .gm-item:hover img {
+      transform: scale(1.07);
+      filter: brightness(1);
+    }
+    .gm-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(5,13,26,0.75) 0%, rgba(5,13,26,0.1) 55%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.35s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gm-item:hover .gm-overlay { opacity: 1; }
+    .gm-zoom {
+      width: 46px; height: 46px;
+      border: 1.5px solid rgba(255,255,255,0.65);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transform: scale(0.7);
+      opacity: 0;
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+    }
+    .gm-item:hover .gm-zoom {
+      transform: scale(1);
+      opacity: 1;
+    }
+    .gm-zoom svg { stroke: #fff; }
+    .gm-placeholder::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--navy-light);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 1000;
+      background: rgba(5,13,26,0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .lightbox.active { opacity: 1; pointer-events: all; }
+
+    .lightbox-stage {
+      position: relative;
+      max-width: 90vw;
+      max-height: 85vh;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lightbox-img {
+      max-width: 88vw;
+      max-height: 80vh;
+      object-fit: contain;
+      display: block;
+      border: 1px solid rgba(184,50,40,0.2);
+      transform: scale(0.94);
+      opacity: 0;
+      transition: transform 0.35s cubic-bezier(0.34,1.2,0.64,1), opacity 0.3s;
+    }
+    .lightbox.active .lightbox-img {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 44px; height: 44px;
+      background: rgba(184,50,40,0.6);
+      border: none; color: #fff;
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s;
+      font-family: 'Lato', sans-serif;
+    }
+    .lightbox-close:hover { background: var(--red-bright); }
+
+    .lightbox-btn {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      width: 52px; height: 52px;
+      background: rgba(184,50,40,0.5);
+      border: none; color: #fff;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.3s, transform 0.2s;
+      font-family: 'Lato', sans-serif;
+    }
+    .lightbox-btn:hover { background: var(--red-bright); }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-prev:hover { transform: translateY(-50%) translateX(-2px); }
+    .lightbox-next:hover { transform: translateY(-50%) translateX(2px); }
+
+    .lightbox-counter {
+      position: absolute;
+      bottom: 18px; left: 50%; transform: translateX(-50%);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      white-space: nowrap;
+    }
+
+    .lightbox-dots {
+      position: absolute;
+      bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 6px;
+    }
+    .lightbox-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.25);
+      transition: background 0.3s, transform 0.3s;
+      cursor: pointer;
+    }
+    .lightbox-dot.active {
+      background: var(--red-bright);
+      transform: scale(1.4);
+    }
+
+    @media (max-width: 860px) {
+      .gallery-masonry {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 140px;
+      }
+      .gm-item.gm-featured {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+    }
+    @media (max-width: 480px) {
+      .gallery-masonry { grid-auto-rows: 110px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-brand">M. <span>Czerwiński</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Hej!</a></li>
+      <li><a href="dejcie-spokol.html">Dejcie Spokój</a></li>
+      <li><a href="aktywnosci.html" class="nav-active">Moje aktywności</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+    <a href="tel:+48516875013" class="nav-phone">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+        <path d="M2 2h2.5l1 2.5-1.5 1.5c.9 1.8 2 2.9 3.8 3.8L9.5 8.5 12 9.5v2.5C7 13 0 6 2 2z" fill="#d64030"/>
+      </svg>
+      516 875 013
+    </a>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="subpage-hero">
+    <div class="subpage-hero-inner">
+      <p class="eyebrow">Życie w rytmie muzyki</p>
+      <h1 class="subpage-title">Moje <em>aktywności</em></h1>
+      <p class="subpage-lead">Festiwale, warsztaty, koncerty i chwile, które tworzą historię.</p>
+    </div>
+    <div class="subpage-hero-folk"></div>
+  </section>
+
+  <!-- EVENTS -->
+  <section class="subpage-section" style="background: var(--navy);">
+    <div class="subpage-content">
+
+      <!-- EVENT 1 -->
+      <article class="event-card fade-up">
+        <div class="event-header">
+          <div class="event-meta">
+            <span class="event-date">2024</span>
+            <span class="event-tag">Festiwal</span>
+          </div>
+          <h2 class="event-title">Tydzień Kultury Beskidzkiej — Żywiec</h2>
+        </div>
+        <div class="event-body">
+          <div class="event-desc">
+            <p>
+              Jeden z najważniejszych festiwali folklorystycznych w Polsce. Tydzień Kultury Beskidzkiej
+              to coroczne święto muzyki, tańca i rękodzieła, które przyciąga wykonawców z całych Beskidów
+              oraz gości z zagranicy.
+            </p>
+            <p>
+              W tym roku miałem zaszczyt reprezentować muzykę ze Szczyrku i okolic, prezentując
+              tradycyjny repertuar na heligonce. Występ spotkał się z ciepłym przyjęciem publiczności
+              i kapituły festiwalowej.
+            </p>
+            <p>
+              Zdobyte doświadczenie sceniczne i kontakty z muzykami z całej Polski to bezcenna wartość,
+              którą przekładam na codzienną pracę z uczniami w Fundacji Braci Golec.
+            </p>
+          </div>
+          <div class="event-gallery">
+            <div class="gallery-masonry" data-gallery="0">
+              <div class="gm-item gm-featured" data-index="0"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80" alt="Festiwal 1" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="1"><img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=500&q=80" alt="Festiwal 2" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="2"><img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=500&q=80" alt="Festiwal 3" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="3"><img src="https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&w=500&q=80" alt="Festiwal 4" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="4"><img src="https://images.unsplash.com/photo-1540039155733-5bb30b4d9e30?auto=format&fit=crop&w=500&q=80" alt="Festiwal 5" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="5"><img src="https://images.unsplash.com/photo-1471478331149-c72f17e33c73?auto=format&fit=crop&w=500&q=80" alt="Festiwal 6" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="6"><img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?auto=format&fit=crop&w=500&q=80" alt="Festiwal 7" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="7"><img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=500&q=80" alt="Festiwal 8" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="8"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Festiwal 9" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="9"><img src="https://images.unsplash.com/photo-1527736947477-2790e28f3443?auto=format&fit=crop&w=500&q=80" alt="Festiwal 10" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="10"><img src="https://images.unsplash.com/photo-1486591978090-58e619d37fe7?auto=format&fit=crop&w=500&q=80" alt="Festiwal 11" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <div class="event-divider"></div>
+
+      <!-- EVENT 2 -->
+      <article class="event-card fade-up">
+        <div class="event-header">
+          <div class="event-meta">
+            <span class="event-date">2023</span>
+            <span class="event-tag">Konkurs</span>
+          </div>
+          <h2 class="event-title">Złote Zbyrkadło — Zakopane</h2>
+        </div>
+        <div class="event-body">
+          <div class="event-desc">
+            <p>
+              „Złote Zbyrkadło" to jeden z najbardziej prestiżowych konkursów muzyki góralskiej w Polsce,
+              organizowany w Zakopanem — sercu kultury góralskiej. Konkurs gromadzi najlepszych muzyków
+              ludowych z całych Tatr i Beskidów.
+            </p>
+            <p>
+              Zdobycie nagrody głównej w tej kategorii to dla mnie szczególne wyróżnienie — potwierdzenie,
+              że muzyka, którą uprawiam, jest autentyczna, zakorzeniona i przekazywana z sercem.
+            </p>
+            <p>
+              To wydarzenie otworzyło mi wiele drzwi i umocniło moją misję: zachować żywą tradycję
+              muzyczną Karpat i przekazać ją kolejnym pokoleniom.
+            </p>
+          </div>
+          <div class="event-gallery">
+            <div class="gallery-masonry" data-gallery="1">
+              <div class="gm-item gm-featured" data-index="0"><img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?auto=format&fit=crop&w=900&q=80" alt="Konkurs 1" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="1"><img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&w=500&q=80" alt="Konkurs 2" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="2"><img src="https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?auto=format&fit=crop&w=500&q=80" alt="Konkurs 3" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="3"><img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=500&q=80" alt="Konkurs 4" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="4"><img src="https://images.unsplash.com/photo-1468234847176-28606b9b5a3f?auto=format&fit=crop&w=500&q=80" alt="Konkurs 5" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <div class="event-divider"></div>
+
+      <!-- EVENT 3 -->
+      <article class="event-card fade-up">
+        <div class="event-header">
+          <div class="event-meta">
+            <span class="event-date">2023</span>
+            <span class="event-tag">Warsztaty</span>
+          </div>
+          <h2 class="event-title">Warsztaty w Fundacji Braci Golec — Łodygowice</h2>
+        </div>
+        <div class="event-body">
+          <div class="event-desc">
+            <p>
+              Fundacja Braci Golec od lat kultywuje tradycję muzyczną Beskidów, a ja mam zaszczyt
+              być jej częścią od 2017 roku. Warsztaty, które prowadzę, skupiają się na nauce gry
+              na heligonce — od zupełnych początków po zaawansowany repertuar.
+            </p>
+            <p>
+              Każda grupa uczniów to inne wyzwanie i inna radość. Widzieć, jak ktoś po raz pierwszy
+              wydobywa melodię z miecha — to chwila, której nie da się opisać słowami.
+            </p>
+            <p>
+              Warsztaty grupowe łączymy z zajęciami indywidualnymi, co pozwala na dopasowanie tempa
+              nauki do możliwości każdego ucznia.
+            </p>
+          </div>
+          <div class="event-gallery">
+            <div class="gallery-masonry" data-gallery="2">
+              <div class="gm-item gm-featured" data-index="0"><img src="https://images.unsplash.com/photo-1522202176988-66273c0f9b8c?auto=format&fit=crop&w=900&q=80" alt="Warsztaty 1" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="1"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=500&q=80" alt="Warsztaty 2" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="2"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=500&q=80" alt="Warsztaty 3" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="3"><img src="https://images.unsplash.com/photo-1468234847176-28606b9b5a3f?auto=format&fit=crop&w=500&q=80" alt="Warsztaty 4" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="4"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=500&q=80" alt="Warsztaty 5" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="5"><img src="https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?auto=format&fit=crop&w=500&q=80" alt="Warsztaty 6" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="6"><img src="https://images.unsplash.com/photo-1510915361894-db8b60106cb1?auto=format&fit=crop&w=500&q=80" alt="Warsztaty 7" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="7"><img src="https://images.unsplash.com/photo-1486591978090-58e619d37fe7?auto=format&fit=crop&w=500&q=80" alt="Warsztaty 8" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="8"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Warsztaty 9" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="9"><img src="https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?auto=format&fit=crop&w=500&q=80" alt="Warsztaty 10" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="10"><img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=500&q=80" alt="Warsztaty 11" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="11"><img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=500&q=80" alt="Warsztaty 12" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+              <div class="gm-item" data-index="12"><img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?auto=format&fit=crop&w=500&q=80" alt="Warsztaty 13" loading="lazy" onerror="this.parentElement.classList.add('gm-placeholder')"><div class="gm-overlay"><div class="gm-zoom"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7.5" cy="7.5" r="5" stroke-width="1.4"/><line x1="11.5" y1="11.5" x2="16" y2="16" stroke-width="1.4" stroke-linecap="round"/></svg></div></div></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Podgląd zdjęcia">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Zamknij">✕</button>
+    <button class="lightbox-btn lightbox-prev" id="lightboxPrev" aria-label="Poprzednie">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="20" height="20" fill="currentColor" style="transform:scaleX(-1)"><path d="M439.1 297.4C451.6 309.9 451.6 330.2 439.1 342.7L279.1 502.7C266.6 515.2 246.3 515.2 233.8 502.7C221.3 490.2 221.3 469.9 233.8 457.4L371.2 320L233.9 182.6C221.4 170.1 221.4 149.8 233.9 137.3C246.4 124.8 266.7 124.8 279.2 137.3L439.2 297.3z"/></svg>
+    </button>
+    <button class="lightbox-btn lightbox-next" id="lightboxNext" aria-label="Następne">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="20" height="20" fill="currentColor"><path d="M439.1 297.4C451.6 309.9 451.6 330.2 439.1 342.7L279.1 502.7C266.6 515.2 246.3 515.2 233.8 502.7C221.3 490.2 221.3 469.9 233.8 457.4L371.2 320L233.9 182.6C221.4 170.1 221.4 149.8 233.9 137.3C246.4 124.8 266.7 124.8 279.2 137.3L439.2 297.3z"/></svg>
+    </button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <div class="lightbox-dots" id="lightboxDots"></div>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+  </div>
+
+  <footer>
+    <span class="footer-copy">© 2024 Maksymilian Czerwiński — Muzyk & Instruktor</span>
+    <div class="footer-right">
+      <div class="footer-gems">
+        <span class="footer-gem"></span>
+        <span class="footer-gem"></span>
+        <span class="footer-gem"></span>
+      </div>
+      <span class="footer-made">Strone zrobił <a href="https://flashboard.pl" target="_blank" rel="noopener noreferrer">Bożek</a></span>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Fade-up observer
+    const fadeObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); fadeObs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => fadeObs.observe(el));
+
+    // ── Lightbox ──
+    const lightbox   = document.getElementById('lightbox');
+    const lbImg      = document.getElementById('lightboxImg');
+    const lbClose    = document.getElementById('lightboxClose');
+    const lbPrev     = document.getElementById('lightboxPrev');
+    const lbNext     = document.getElementById('lightboxNext');
+    const lbDots     = document.getElementById('lightboxDots');
+    const lbCounter  = document.getElementById('lightboxCounter');
+
+    let galleries = [];   // array of arrays of src strings
+    let curGallery = 0;
+    let curIdx = 0;
+
+    // Build galleries map
+    document.querySelectorAll('.gallery-masonry').forEach((grid, gi) => {
+      const imgs = [];
+      grid.querySelectorAll('.gm-item img').forEach(img => imgs.push(img.src));
+      galleries.push(imgs);
+
+      grid.querySelectorAll('.gm-item').forEach((item, ii) => {
+        item.addEventListener('click', () => {
+          curGallery = gi;
+          curIdx = ii;
+          openLightbox();
+        });
+      });
+    });
+
+    function buildDots() {
+      lbDots.innerHTML = '';
+      const total = galleries[curGallery].length;
+      for (let i = 0; i < total; i++) {
+        const d = document.createElement('div');
+        d.className = 'lightbox-dot' + (i === curIdx ? ' active' : '');
+        d.addEventListener('click', () => { curIdx = i; updateLightbox(); });
+        lbDots.appendChild(d);
+      }
+    }
+
+    function updateLightbox() {
+      const srcs = galleries[curGallery];
+      // animate out → swap → animate in
+      lbImg.style.opacity = '0';
+      lbImg.style.transform = 'scale(0.94)';
+      setTimeout(() => {
+        lbImg.src = srcs[curIdx];
+        lbImg.style.opacity = '1';
+        lbImg.style.transform = 'scale(1)';
+      }, 150);
+      lbCounter.textContent = (curIdx + 1) + ' / ' + srcs.length;
+      // update dots
+      lbDots.querySelectorAll('.lightbox-dot').forEach((d, i) => d.classList.toggle('active', i === curIdx));
+    }
+
+    function openLightbox() {
+      buildDots();
+      lbImg.style.opacity = '0';
+      lbImg.style.transform = 'scale(0.94)';
+      lbImg.src = galleries[curGallery][curIdx];
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      lbCounter.textContent = (curIdx + 1) + ' / ' + galleries[curGallery].length;
+      requestAnimationFrame(() => {
+        lbImg.style.opacity = '1';
+        lbImg.style.transform = 'scale(1)';
+      });
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    function prev() {
+      const len = galleries[curGallery].length;
+      curIdx = (curIdx - 1 + len) % len;
+      updateLightbox();
+    }
+    function next() {
+      const len = galleries[curGallery].length;
+      curIdx = (curIdx + 1) % len;
+      updateLightbox();
+    }
+
+    lbClose.addEventListener('click', closeLightbox);
+    lbPrev.addEventListener('click', prev);
+    lbNext.addEventListener('click', next);
+    lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+
+    document.addEventListener('keydown', e => {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape')      closeLightbox();
+      if (e.key === 'ArrowLeft')   prev();
+      if (e.key === 'ArrowRight')  next();
+    });
+
+    // Touch / swipe support
+    let touchStartX = 0;
+    lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    lightbox.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
+    });
+  </script>
+</body>
+</html>

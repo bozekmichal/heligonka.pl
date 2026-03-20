@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dejcie Spokój — Kapela Folkowa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── PAGE LAYOUT ── */
+    .ds-wrap {
+      min-height: 100vh;
+      background: var(--navy-deep);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding: 130px 40px 80px;
+      text-align: center;
+    }
+    .music-bubbles { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+
+    .ds-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      width: 100%;
+    }
+
+    /* ── TITLE ── */
+    .ds-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 5.2rem;
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 0.95;
+      margin: 16px 0 0;
+    }
+    .ds-title em {
+      color: var(--red-bright);
+      font-style: italic;
+      display: block;
+    }
+
+    .ds-lead {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.2rem;
+      line-height: 1.85;
+      color: var(--cream-muted);
+      margin: 28px 0 0;
+    }
+
+    /* ── OCCASIONS ── */
+    .ds-occasions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 32px 0 40px;
+    }
+    .ds-tag {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      border: 1px solid rgba(184,50,40,0.4);
+      padding: 7px 16px;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .ds-tag:hover {
+      border-color: var(--red-bright);
+      color: var(--cream);
+    }
+
+    /* ── CTA ── */
+    .ds-cta {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    /* ── YOUTUBE BLOCK ── */
+    .ds-yt {
+      border-top: 1px solid rgba(184,50,40,0.2);
+      padding-top: 44px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .ds-yt-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cream-muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .ds-yt-label::before,
+    .ds-yt-label::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: rgba(184,50,40,0.35);
+    }
+    .ds-yt-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--cream);
+      text-decoration: none;
+      padding: 18px 32px;
+      border: 1px solid rgba(184,50,40,0.3);
+      background: rgba(184,50,40,0.06);
+      transition: background 0.3s, border-color 0.3s, color 0.3s;
+    }
+    .ds-yt-link:hover {
+      background: rgba(184,50,40,0.14);
+      border-color: var(--red-bright);
+      color: var(--cream);
+    }
+    .ds-yt-icon {
+      width: 36px; height: 36px;
+      background: var(--red-bright);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.3s;
+    }
+    .ds-yt-link:hover .ds-yt-icon { background: #e84830; }
+
+    /* ── WORK IN PROGRESS badge ── */
+    .ds-wip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red-bright);
+      border: 1px solid rgba(184,50,40,0.4);
+      padding: 5px 14px;
+      margin-bottom: 4px;
+    }
+    .ds-wip-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--red-bright);
+      animation: blink 1.4s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    /* ── PHONE ── */
+    .ds-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--cream);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      border-bottom: 2px solid rgba(184,50,40,0.35);
+      padding-bottom: 4px;
+      transition: color 0.3s, border-color 0.3s;
+    }
+    .ds-phone:hover {
+      color: var(--red-bright);
+      border-color: var(--red-bright);
+    }
+    .ds-phone svg { flex-shrink: 0; }
+
+    @media (max-width: 640px) {
+      .ds-title { font-size: 3.4rem; }
+      .ds-wrap { padding: 120px 24px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-brand">M. <span>Czerwiński</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Hej!</a></li>
+      <li><a href="dejcie-spokol.html" class="nav-active">Dejcie Spokój</a></li>
+      <li><a href="aktywnosci.html">Moje aktywności</a></li>
+      <li><a href="kontakt.html">Kontakt</a></li>
+    </ul>
+    <a href="tel:+48516875013" class="nav-phone">
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+        <path d="M2 2h2.5l1 2.5-1.5 1.5c.9 1.8 2 2.9 3.8 3.8L9.5 8.5 12 9.5v2.5C7 13 0 6 2 2z" fill="#d64030"/>
+      </svg>
+      516 875 013
+    </a>
+  </nav>
+
+  <section class="ds-wrap">
+    <div class="music-bubbles" id="musicBubbles"></div>
+
+    <div class="ds-inner">
+
+      <div class="ds-wip"><span class="ds-wip-dot"></span>Strona w przygotowaniu</div>
+
+      <p class="eyebrow">Kapela Folkowa</p>
+
+      <h1 class="ds-title">
+        Dejcie<br><em>Spokój</em>
+      </h1>
+
+      <div class="folk-inline-divider" style="justify-content:center; margin:28px 0 0;">
+        <span class="bar"></span>
+        <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+          <rect x="4" y="4" width="18" height="18" stroke="#b83228" stroke-width="1.2"/>
+          <rect x="4" y="4" width="18" height="18" stroke="#b83228" stroke-width="1.2" transform="rotate(45 13 13)"/>
+          <circle cx="13" cy="13" r="3" fill="#d64030"/>
+        </svg>
+        <span class="bar"></span>
+      </div>
+
+      <p class="ds-lead">
+        Gramy muzykę beskidzką z pasją i przymrużeniem oka.<br>
+        Zapraszamy na wesela, urodziny, festyny i wszelkie uroczystości, gdzie dobra muzyka jest obowiązkowa.
+      </p>
+
+      <div class="ds-occasions">
+        <span class="ds-tag">Wesela</span>
+        <span class="ds-tag">Urodziny</span>
+        <span class="ds-tag">Festyny</span>
+        <span class="ds-tag">Festiwale</span>
+        <span class="ds-tag">Imprezy plenerowe</span>
+        <span class="ds-tag">Uroczystości prywatne</span>
+      </div>
+
+      <div class="ds-cta">
+        <a href="kontakt.html" class="btn-red">Zamów kapelę</a>
+      </div>
+
+      <div class="ds-yt">
+        <div class="ds-yt-label">Posłuchaj nas</div>
+        <a href="https://www.youtube.com/@dejciespokoj7958" target="_blank" rel="noopener noreferrer" class="ds-yt-link">
+          <div class="ds-yt-icon">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M7 5.5l6 3.5-6 3.5V5.5z" fill="#fff"/>
+            </svg>
+          </div>
+          YouTube — @dejciespokoj7958
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-copy">© 2024 Maksymilian Czerwiński — Muzyk & Instruktor</span>
+    <div class="footer-right">
+      <div class="footer-gems">
+        <span class="footer-gem"></span>
+        <span class="footer-gem"></span>
+        <span class="footer-gem"></span>
+      </div>
+      <span class="footer-made">Strone zrobił <a href="https://flashboard.pl" target="_blank" rel="noopener noreferrer">Bożek</a></span>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
