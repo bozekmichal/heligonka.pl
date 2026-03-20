@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maksymilian Czerwiński — Muzyk & Instruktor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       NAV
+  ════════════════════════════════════════════ -->
+  <nav id="navbar">
+    <a href="#hero" class="nav-brand">M. <span>Czerwiński</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">O mnie</a></li>
+      <li><a href="#services">Oferta</a></li>
+      <li><a href="#contact">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════ -->
+  <section id="hero">
+    <!-- Floating decorative gems -->
+    <span class="float-gem"></span>
+    <span class="float-gem"></span>
+    <span class="float-gem"></span>
+    <span class="float-gem"></span>
+
+    <div class="hero-inner">
+
+      <!-- PHOTO -->
+      <div class="hero-photo-col">
+        <div class="photo-frame">
+          <!-- Corner ornaments -->
+          <svg class="corner-ornament tl" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="3" x2="36" y2="3" stroke="#b83228" stroke-width="1.5"/>
+            <line x1="3" y1="0" x2="3" y2="36" stroke="#b83228" stroke-width="1.5"/>
+            <line x1="0" y1="11" x2="22" y2="11" stroke="#b83228" stroke-width="0.6" stroke-opacity="0.5"/>
+            <line x1="11" y1="0" x2="11" y2="22" stroke="#b83228" stroke-width="0.6" stroke-opacity="0.5"/>
+            <circle cx="3" cy="3" r="3" fill="#d64030"/>
+            <circle cx="20" cy="3" r="1.5" fill="#b83228" opacity="0.55"/>
+            <circle cx="3" cy="20" r="1.5" fill="#b83228" opacity="0.55"/>
+            <polygon points="11,3 3,11 3,3" fill="#b83228" opacity="0.25"/>
+          </svg>
+          <svg class="corner-ornament tr" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="3" x2="36" y2="3" stroke="#b83228" stroke-width="1.5"/>
+            <line x1="3" y1="0" x2="3" y2="36" stroke="#b83228" stroke-width="1.5"/>
+            <line x1="0" y1="11" x2="22" y2="11" stroke="#b83228" stroke-width="0.6" stroke-opacity="0.5"/>
+            <line x1="11" y1="0" x2="11" y2="22" stroke="#b83228" stroke-width="0.6" stroke-opacity="0.5"/>
+            <circle cx="3" cy="3" r="3" fill="#d64030"/>
+            <circle cx="20" cy="3" r="1.5" fill="#b83228" opacity="0.55"/>
+            <circle cx="3" cy="20" r="1.5" fill="#b83228" opacity="0.55"/>
+          </svg>
+          <svg class="corner-ornament bl" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="3" x2="36" y2="3" stroke="#b83228" stroke-width="1.5"/>
+            <line x1="3" y1="0" x2="3" y2="36" stroke="#b83228" stroke-width="1.5"/>
+            <line x1="0" y1="11" x2="22" y2="11" stroke="#b83228" stroke-width="0.6" stroke-opacity="0.5"/>
+            <line x1="11" y1="0" x2="11" y2="22" stroke="#b83228" stroke-width="0.6" stroke-opacity="0.5"/>
+            <circle cx="3" cy="3" r="3" fill="#d64030"/>
+            <circle cx="20" cy="3" r="1.5" fill="#b83228" opacity="0.55"/>
+            <circle cx="3" cy="20" r="1.5" fill="#b83228" opacity="0.55"/>
+          </svg>
+          <svg class="corner-ornament br" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="3" x2="36" y2="3" stroke="#b83228" stroke-width="1.5"/>
+            <line x1="3" y1="0" x2="3" y2="36" stroke="#b83228" stroke-width="1.5"/>
+            <line x1="0" y1="11" x2="22" y2="11" stroke="#b83228" stroke-width="0.6" stroke-opacity="0.5"/>
+            <line x1="11" y1="0" x2="11" y2="22" stroke="#b83228" stroke-width="0.6" stroke-opacity="0.5"/>
+            <circle cx="3" cy="3" r="3" fill="#d64030"/>
+            <circle cx="20" cy="3" r="1.5" fill="#b83228" opacity="0.55"/>
+            <circle cx="3" cy="20" r="1.5" fill="#b83228" opacity="0.55"/>
+          </svg>
+
+          <div class="photo-frame-border"></div>
+          <div class="photo-img-wrap" id="photoWrap">
+            <img
+              src="brand_assets/Maksymilian Czerwinski.jpeg"
+              alt="Maksymilian Czerwiński — Muzyk & Instruktor"
+              onerror="this.parentElement.innerHTML='<div class=\'photo-placeholder\'><div class=\'placeholder-initials\'>MC</div><div class=\'placeholder-note\'>Maksymilian Czerwiński</div></div>'"
+            >
+          </div>
+
+          <!-- Side accent bars -->
+          <span class="photo-accent left"></span>
+          <span class="photo-accent right"></span>
+        </div>
+      </div>
+
+      <!-- TEXT -->
+      <div class="hero-text-col">
+        <p class="eyebrow">Polska Muzyka Tradycyjna</p>
+
+        <h1 class="hero-name">
+          Maksymilian
+          <span class="red-italic">Czerwiński</span>
+        </h1>
+
+        <p class="hero-role">Muzyk &nbsp;|&nbsp; Instruktor &nbsp;|&nbsp; Artysta</p>
+
+        <div class="folk-inline-divider">
+          <span class="bar"></span>
+          <!-- Folk 8-star medallion -->
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="5" width="18" height="18" stroke="#b83228" stroke-width="1.2" transform="rotate(0 14 14)"/>
+            <rect x="5" y="5" width="18" height="18" stroke="#b83228" stroke-width="1.2" transform="rotate(45 14 14)"/>
+            <circle cx="14" cy="14" r="3" fill="#d64030"/>
+            <circle cx="14" cy="14" r="1.5" fill="#050d1a"/>
+          </svg>
+          <span class="bar"></span>
+        </div>
+
+        <p class="hero-desc">
+          Pasjonat tradycyjnej muzyki ludowej, znawca heligonki i guzikówki.
+          Od lat dzieli się swoją wiedzą, prowadząc lekcje i warsztaty —
+          zachowując żywą tradycję Karpat dla kolejnych pokoleń.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn-red">Skontaktuj się</a>
+          <a href="#services" class="btn-ghost">
+            Poznaj ofertę <span class="arr">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Folk border strip -->
+    <div class="hero-folk-bottom">
+      <svg class="folk-strip" viewBox="0 0 1200 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="folkBorderHero" x="0" y="0" width="60" height="28" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="14" x2="60" y2="14" stroke="#b83228" stroke-width="0.7" stroke-opacity="0.5"/>
+            <polygon points="30,2 40,14 30,26 20,14" fill="#b83228" fill-opacity="0.55"/>
+            <rect x="0" y="11" width="6" height="6" fill="#b83228" fill-opacity="0.3" transform="rotate(45 3 14)"/>
+            <rect x="54" y="11" width="6" height="6" fill="#b83228" fill-opacity="0.3" transform="rotate(45 57 14)"/>
+          </pattern>
+        </defs>
+        <rect width="1200" height="28" fill="url(#folkBorderHero)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT
+  ════════════════════════════════════════════ -->
+  <section id="about">
+
+    <!-- Folk strip top -->
+    <div class="folk-strip-top">
+      <svg class="folk-strip" viewBox="0 0 1200 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="folkBorderAbout" x="0" y="0" width="40" height="28" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="14" x2="40" y2="14" stroke="#b83228" stroke-width="0.5" stroke-opacity="0.3"/>
+            <polygon points="20,6 26,14 20,22 14,14" fill="#b83228" fill-opacity="0.35"/>
+          </pattern>
+        </defs>
+        <rect width="1200" height="28" fill="url(#folkBorderAbout)"/>
+      </svg>
+    </div>
+
+    <div class="about-inner">
+
+      <!-- LEFT -->
+      <div class="about-left fade-up">
+        <span class="section-eyebrow about-eyebrow">O mnie</span>
+        <h2 class="about-heading">
+          Tradycja<br>w każdej
+          <em>nucie</em>
+        </h2>
+
+        <!-- Medallion -->
+        <div class="about-folk-medallion" style="margin:28px 0;">
+          <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg" class="shimmer-ornament">
+            <polygon points="36 4 68 36 36 68 4 36" fill="none" stroke="#b83228" stroke-width="1"/>
+            <polygon points="36 12 60 36 36 60 12 36" fill="none" stroke="#b83228" stroke-width="0.6" stroke-opacity="0.5"/>
+            <polygon points="36 4 68 36 36 68 4 36" fill="none" stroke="#b83228" stroke-width="1" transform="rotate(45 36 36)"/>
+            <polygon points="36 12 60 36 36 60 12 36" fill="none" stroke="#b83228" stroke-width="0.6" stroke-opacity="0.5" transform="rotate(45 36 36)"/>
+            <circle cx="36" cy="36" r="6" fill="#b83228"/>
+            <circle cx="36" cy="36" r="2.5" fill="#050d1a"/>
+            <!-- cardinal dots -->
+            <circle cx="36" cy="8"  r="2" fill="#b83228" opacity="0.7"/>
+            <circle cx="36" cy="64" r="2" fill="#b83228" opacity="0.7"/>
+            <circle cx="8"  cy="36" r="2" fill="#b83228" opacity="0.7"/>
+            <circle cx="64" cy="36" r="2" fill="#b83228" opacity="0.7"/>
+          </svg>
+        </div>
+
+        <div class="about-stat-row">
+          <div class="about-stat">
+            <div class="stat-num">15+</div>
+            <span class="stat-lbl">Lat doświadczenia</span>
+          </div>
+          <div class="about-stat">
+            <div class="stat-num">300+</div>
+            <span class="stat-lbl">Uczniów</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="about-right">
+        <blockquote class="about-quote fade-up">
+          „Muzyka ludowa to nie relikt przeszłości —<br>
+          to żywy głos ziemi, który trzeba usłyszeć."
+        </blockquote>
+
+        <p class="about-body fade-up d1">
+          Heligonka to dla niego nie instrument — to język. Grać uczył się od <strong>Czesława Węglarza</strong>,
+          ale miłość do tego górskiego głosu ma w sobie od urodzenia. Dziś tę miłość przekazuje kolejnym
+          pokoleniom w <strong>Fundacji Braci Golec</strong>, gdzie prowadzi zajęcia od 2017 roku.
+          Wielokrotny laureat festiwali folklorystycznych — w tym zdobywca prestiżowego
+          <strong>„Złotego Zbyrkadła"</strong> w Zakopanem i trzech pierwszych miejsc: w Ciechanowcu,
+          Żywcu i na słowackiej Oscadnicy. Współtworzy kapelę <strong>„Dejcie Spokój"</strong>
+          i od lat gra w zespole <strong>„Magurzanie"</strong> z Łodygowic, bo góralskie korzenie
+          to nie tradycja — to zobowiązanie.
+        </p>
+
+        <div class="tags fade-up d4">
+          <span class="tag"><span class="tag-dot"></span>Heligonka</span>
+          <span class="tag"><span class="tag-dot"></span>Muzyka Karpacka</span>
+          <span class="tag"><span class="tag-dot"></span>Folklor Polski</span>
+          <span class="tag"><span class="tag-dot"></span>Muzyka Łemkowska</span>
+          <span class="tag"><span class="tag-dot"></span>Podhalańska Tradycja</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SERVICES
+  ════════════════════════════════════════════ -->
+  <section id="services">
+    <div class="services-header fade-up">
+      <span class="section-eyebrow">Oferta</span>
+      <h2 class="section-title">Czym mogę służyć</h2>
+      <!-- Folk divider -->
+      <div class="section-ornament">
+        <svg width="200" height="20" viewBox="0 0 200 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="10" x2="80" y2="10" stroke="#b83228" stroke-width="0.7" stroke-opacity="0.5"/>
+          <polygon points="90,2 100,10 90,18 80,10" fill="#b83228" opacity="0.7"/>
+          <polygon points="100,4 108,10 100,16 92,10" fill="#b83228" opacity="0.45"/>
+          <polygon points="110,2 120,10 110,18 100,10" fill="#b83228" opacity="0.7"/>
+          <line x1="120" y1="10" x2="200" y2="10" stroke="#b83228" stroke-width="0.7" stroke-opacity="0.5"/>
+        </svg>
+      </div>
+      <p class="section-sub">Indywidualnie dopasowane do Twoich potrzeb i możliwości</p>
+    </div>
+
+    <div class="cards">
+
+      <!-- Card 1 -->
+      <div class="card fade-up">
+        <span class="card-number">01</span>
+        <div class="card-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20" r="18" stroke="#b83228" stroke-width="1.2" stroke-opacity="0.5"/>
+            <circle cx="20" cy="20" r="10" stroke="#b83228" stroke-width="0.8"/>
+            <circle cx="20" cy="20" r="3" fill="#d64030"/>
+            <line x1="20" y1="2"  x2="20" y2="10" stroke="#b83228" stroke-width="1.5"/>
+            <line x1="20" y1="30" x2="20" y2="38" stroke="#b83228" stroke-width="1.5"/>
+            <line x1="2"  y1="20" x2="10" y2="20" stroke="#b83228" stroke-width="1.5"/>
+            <line x1="30" y1="20" x2="38" y2="20" stroke="#b83228" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Lekcje Indywidualne</h3>
+        <span class="card-sub">Private Lessons</span>
+        <p class="card-text">
+          Zajęcia jeden na jeden — od podstaw po zaawansowany repertuar.
+          Program dostosowany do tempa i celów ucznia. Nauka gry na heligonce,
+          teoria muzyki ludowej, praca nad rytmiką i ornamentacją.
+        </p>
+        <svg class="card-corner-gem" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="24 2 46 24 24 46 2 24" fill="#d64030"/>
+          <polygon points="24 10 38 24 24 38 10 24" fill="#b83228"/>
+        </svg>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card fade-up d1">
+        <span class="card-number">02</span>
+        <div class="card-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="20 2 38 12 38 28 20 38 2 28 2 12" stroke="#b83228" stroke-width="1.2" fill="none" stroke-opacity="0.5"/>
+            <polygon points="20 10 30 16 30 24 20 30 10 24 10 16" stroke="#b83228" stroke-width="0.8" fill="none"/>
+            <circle cx="20" cy="20" r="3" fill="#d64030"/>
+            <circle cx="20" cy="6"  r="2" fill="#b83228" opacity="0.7"/>
+            <circle cx="20" cy="34" r="2" fill="#b83228" opacity="0.7"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Warsztaty Grupowe</h3>
+        <span class="card-sub">Group Workshops</span>
+        <p class="card-text">
+          Dynamiczne warsztaty dla grup — szkół, stowarzyszeń kulturalnych
+          i festiwali folkowych. Wspólna nauka pieśni, tańców i technik gry.
+          Idealne dla tych, którzy chcą odkryć tradycję w towarzystwie.
+        </p>
+        <svg class="card-corner-gem" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="24 2 46 24 24 46 2 24" fill="#d64030"/>
+          <polygon points="24 10 38 24 24 38 10 24" fill="#b83228"/>
+        </svg>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card fade-up d2">
+        <span class="card-number">03</span>
+        <div class="card-icon">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="34" height="34" stroke="#b83228" stroke-width="1.2" stroke-opacity="0.5"/>
+            <rect x="3" y="3" width="34" height="34" stroke="#b83228" stroke-width="0.8" transform="rotate(45 20 20)"/>
+            <rect x="9" y="9" width="22" height="22" stroke="#b83228" stroke-width="0.5" stroke-opacity="0.5"/>
+            <circle cx="20" cy="20" r="4" fill="#d64030"/>
+          </svg>
+        </div>
+        <h3 class="card-title">Występy i Koncerty</h3>
+        <span class="card-sub">Performances & Concerts</span>
+        <p class="card-text">
+          Solowe recitale i koncerty z zespołem na scenach folkowych,
+          festiwalach, weselach i uroczystościach. Autentyczny dźwięk
+          heligonki, który przenosi słuchaczy w serce Karpat.
+        </p>
+        <svg class="card-corner-gem" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="24 2 46 24 24 46 2 24" fill="#d64030"/>
+          <polygon points="24 10 38 24 24 38 10 24" fill="#b83228"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CONTACT
+  ════════════════════════════════════════════ -->
+  <section id="contact">
+    <div class="contact-inner fade-up">
+      <div class="contact-ornament">
+        <svg width="100" height="28" viewBox="0 0 100 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="folkContactStrip" x="0" y="0" width="25" height="28" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="14" x2="25" y2="14" stroke="#b83228" stroke-width="0.6" stroke-opacity="0.4"/>
+              <polygon points="12.5,4 18,14 12.5,24 7,14" fill="#b83228" opacity="0.55"/>
+            </pattern>
+          </defs>
+          <rect width="100" height="28" fill="url(#folkContactStrip)"/>
+        </svg>
+      </div>
+
+      <span class="section-eyebrow contact-eyebrow">Kontakt</span>
+      <h2 class="contact-title">
+        Zacznijmy<br>
+        <em>razem grać</em>
+      </h2>
+      <p class="contact-text">
+        Jesteś zainteresowany lekcjami, warsztatem lub koncertem?
+        Napisz lub zadzwoń — chętnie omówię szczegóły
+        i dopasujemy ofertę do Twoich potrzeb.
+      </p>
+
+      <div class="contact-cta">
+        <a href="mailto:kontakt@maksymilanczerwiński.pl" class="btn-red">
+          Napisz wiadomość
+        </a>
+        <div class="contact-links">
+          <a href="tel:+48000000000" class="contact-link">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 2h3l1.5 3L5 6.5c1 2 2.5 3.5 4.5 4.5L11 9.5l3 1.5v3c-7 1-13-5-12-12z" stroke="#b83228" stroke-width="1" fill="none"/>
+            </svg>
+            Zadzwoń
+          </a>
+          <a href="#" class="contact-link">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="1" y="1" width="12" height="12" rx="3" stroke="#b83228" stroke-width="1"/>
+              <circle cx="7" cy="7" r="2.5" stroke="#b83228" stroke-width="1"/>
+              <circle cx="10.5" cy="3.5" r="0.75" fill="#b83228"/>
+            </svg>
+            Instagram
+          </a>
+          <a href="#" class="contact-link">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 3h12v9H1zM1 3l6 5 6-5" stroke="#b83228" stroke-width="1" fill="none"/>
+            </svg>
+            Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Folk strip at bottom of contact -->
+    <div class="folk-strip-bottom">
+      <svg class="folk-strip" viewBox="0 0 1200 28" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="folkContactBottom" x="0" y="0" width="48" height="28" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="14" x2="48" y2="14" stroke="#b83228" stroke-width="0.6" stroke-opacity="0.3"/>
+            <polygon points="24,5 31,14 24,23 17,14" fill="#b83228" opacity="0.4"/>
+            <circle cx="4"  cy="14" r="1.5" fill="#b83228" opacity="0.3"/>
+            <circle cx="44" cy="14" r="1.5" fill="#b83228" opacity="0.3"/>
+          </pattern>
+        </defs>
+        <rect width="1200" height="28" fill="url(#folkContactBottom)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ════════════════════════════════════════════ -->
+  <footer>
+    <span class="footer-copy">
+      © 2024 Maksymilian Czerwiński — Muzyk & Instruktor
+    </span>
+    <div class="footer-gems">
+      <span class="footer-gem"></span>
+      <span class="footer-gem"></span>
+      <span class="footer-gem"></span>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       JAVASCRIPT
+  ════════════════════════════════════════════ -->
+  <script>
+    // Nav scroll state
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Intersection Observer — fade-up
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Subtle hero parallax on photo
+    const photoWrap = document.getElementById('photoWrap');
+    if (photoWrap && window.matchMedia('(min-width: 860px)').matches) {
+      window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        const parallaxVal = scrolled * 0.12;
+        photoWrap.style.transform = `translateY(${parallaxVal}px)`;
+      }, { passive: true });
+    }
+
+    // Shimmer on folk ornaments
+    const shimmerEls = document.querySelectorAll('.shimmer-ornament');
+    shimmerEls.forEach(el => {
+      el.style.animation = 'shimmer 4s ease-in-out infinite';
+    });
+  </script>
+</body>
+</html>
