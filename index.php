@@ -1,47 +1,12 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maksymilian Czerwiński — Muzyk & Instruktor</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<?php
+$pageTitle   = 'Maksymilian Czerwiński — Muzyk & Instruktor';
+$currentPage = 'home';
+include 'includes/head.php';
+?>
 </head>
 <body>
 
-  <!-- ═══════════════════════════════════════════
-       NAV
-  ════════════════════════════════════════════ -->
-  <nav id="navbar">
-    <a href="#hero" class="nav-brand">M. <span>Czerwiński</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html" class="nav-active">Hej!</a></li>
-      <li><a href="dejcie-spokoj.html">Dejcie Spokój</a></li>
-      <li><a href="aktywnosci.html">Moje aktywności</a></li>
-      <li><a href="kontakt.html">Kontakt</a></li>
-    </ul>
-    <a href="tel:+48516875013" class="nav-phone">
-      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M2 2h2.5l1 2.5-1.5 1.5c.9 1.8 2 2.9 3.8 3.8L9.5 8.5 12 9.5v2.5C7 13 0 6 2 2z" fill="#d64030"/>
-      </svg>
-      516 875 013
-    </a>
-    <button class="nav-hamburger" id="navHamburger" aria-label="Otwórz menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-links"></div>
-    <a href="tel:+48516875013" class="mobile-menu-phone">
-      <svg width="16" height="16" viewBox="0 0 13 13" fill="none">
-        <path d="M2 2h2.5l1 2.5-1.5 1.5c.9 1.8 2 2.9 3.8 3.8L9.5 8.5 12 9.5v2.5C7 13 0 6 2 2z" fill="#d64030"/>
-      </svg>
-      516 875 013
-    </a>
-  </div>
+<?php include 'includes/header.php'; ?>
 
   <!-- ═══════════════════════════════════════════
        HERO
@@ -421,7 +386,7 @@
       </a>
 
       <!-- Card 6 -->
-      <a href="dejcie-spokoj.html" class="card fade-up d2">
+      <a href="dejcie-spokoj.php" class="card fade-up d2">
         <div class="card-icon">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="14" r="5" stroke="#b83228" stroke-width="1.2" stroke-opacity="0.5"/>
@@ -481,17 +446,7 @@
             </svg>
             516 875 013
           </a>
-          <a href="kontakt.html" class="contact-phone-ghost">Napisz do mnie</a>
-        </div>
-        <div class="contact-links">
-          <a href="https://www.youtube.com/@heligonkapl/featured" target="_blank" rel="noopener noreferrer" class="contact-link">
-            <img src="brand_assets/icons/YouTube.svg" width="22" height="16" alt="YouTube" style="display:block;">
-            YouTube
-          </a>
-          <a href="https://www.facebook.com/profile.php?id=100090272505042" target="_blank" rel="noopener noreferrer" class="contact-link">
-            <img src="brand_assets/icons/Facebook.svg" width="18" height="18" alt="Facebook" style="display:block;">
-            Facebook
-          </a>
+          <a href="kontakt.php" class="contact-phone-ghost">Napisz do mnie</a>
         </div>
       </div>
     </div>
@@ -512,23 +467,10 @@
     </div>
   </section>
 
-  <!-- ═══════════════════════════════════════════
-       FOOTER
-  ════════════════════════════════════════════ -->
-  <footer>
-    <span class="footer-copy">
-      © 2024 Maksymilian Czerwiński — Muzyk & Instruktor
-    </span>
-    <div class="footer-right">
-      <div class="footer-gems">
-        <span class="footer-gem"></span>
-        <span class="footer-gem"></span>
-        <span class="footer-gem"></span>
-      </div>
-      <span class="footer-made">Strone zrobił <a href="https://flashboard.pl" target="_blank" rel="noopener noreferrer">Bożek</a></span>
-    </div>
-  </footer>
-
-  <script src="main.js"></script>
+<?php
+// Sekcja kontakt ma własny pasek folkowy na dole — ukrywamy ten ze stopki
+$hideFooterFolkStrip = true;
+include 'includes/footer.php';
+?>
 </body>
 </html>

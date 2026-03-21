@@ -1,0 +1,9 @@
+# Przekierowania .html → .php wymagają mod_rewrite.
+# Aby je włączyć w MAMP: odkomentuj poniższe linie
+# i w httpd.conf odkomentuj "LoadModule rewrite_module".
+
+# RewriteEngine On
+# RewriteRule ^index\.html$         /index.php         [R=301,L]
+# RewriteRule ^kontakt\.html$       /kontakt.php       [R=301,L]
+# RewriteRule ^aktywnosci\.html$    /aktywnosci.php    [R=301,L]
+# RewriteRule ^dejcie-spokoj\.html$ /dejcie-spokoj.php [R=301,L]
