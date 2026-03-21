@@ -141,24 +141,39 @@
     }
     .ds-yt-link:hover .ds-yt-icon { background: #e84830; }
 
-    /* ── WORK IN PROGRESS badge ── */
+    /* ── TOAST NOTIFICATION ── */
     .ds-wip {
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(0);
+      z-index: 500;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       font-family: 'Lato', sans-serif;
-      font-size: 0.58rem;
+      font-size: 0.62rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--red-bright);
-      border: 1px solid rgba(184,50,40,0.4);
-      padding: 5px 14px;
-      margin-bottom: 4px;
+      color: #d4a843;
+      border: 1px solid rgba(212,168,67,0.5);
+      background: rgba(10,18,32,0.88);
+      backdrop-filter: blur(12px);
+      padding: 10px 22px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4), 0 0 0 1px rgba(212,168,67,0.15);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      white-space: nowrap;
+    }
+    .ds-wip.hide {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-16px);
+      pointer-events: none;
     }
     .ds-wip-dot {
       width: 6px; height: 6px;
       border-radius: 50%;
-      background: var(--red-bright);
+      background: #d4a843;
+      flex-shrink: 0;
       animation: blink 1.4s ease-in-out infinite;
     }
     @keyframes blink {
@@ -195,11 +210,13 @@
 </head>
 <body>
 
+  <div class="ds-wip" id="wipToast"><span class="ds-wip-dot"></span>Strona w przygotowaniu</div>
+
   <nav id="navbar">
     <a href="index.html" class="nav-brand">M. <span>Czerwiński</span></a>
     <ul class="nav-links">
       <li><a href="index.html">Hej!</a></li>
-      <li><a href="dejcie-spokol.html" class="nav-active">Dejcie Spokój</a></li>
+      <li><a href="dejcie-spokoj.html" class="nav-active">Dejcie Spokój</a></li>
       <li><a href="aktywnosci.html">Moje aktywności</a></li>
       <li><a href="kontakt.html">Kontakt</a></li>
     </ul>
@@ -209,14 +226,25 @@
       </svg>
       516 875 013
     </a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Otwórz menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-links"></div>
+    <a href="tel:+48516875013" class="mobile-menu-phone">
+      <svg width="16" height="16" viewBox="0 0 13 13" fill="none">
+        <path d="M2 2h2.5l1 2.5-1.5 1.5c.9 1.8 2 2.9 3.8 3.8L9.5 8.5 12 9.5v2.5C7 13 0 6 2 2z" fill="#d64030"/>
+      </svg>
+      516 875 013
+    </a>
+  </div>
 
   <section class="ds-wrap">
     <div class="music-bubbles" id="musicBubbles"></div>
 
     <div class="ds-inner">
-
-      <div class="ds-wip"><span class="ds-wip-dot"></span>Strona w przygotowaniu</div>
 
       <p class="eyebrow">Kapela Folkowa</p>
 
@@ -255,10 +283,8 @@
       <div class="ds-yt">
         <div class="ds-yt-label">Posłuchaj nas</div>
         <a href="https://www.youtube.com/@dejciespokoj7958" target="_blank" rel="noopener noreferrer" class="ds-yt-link">
-          <div class="ds-yt-icon">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M7 5.5l6 3.5-6 3.5V5.5z" fill="#fff"/>
-            </svg>
+          <div class="ds-yt-icon" style="background:none; border-radius:0; width:44px; height:31px;">
+            <img src="brand_assets/icons/YouTube.svg" alt="YouTube" style="width:100%;height:100%;object-fit:contain;">
           </div>
           YouTube — @dejciespokoj7958
         </a>
@@ -280,5 +306,11 @@
   </footer>
 
   <script src="main.js"></script>
+  <script>
+    (function() {
+      const toast = document.getElementById('wipToast');
+      setTimeout(() => toast.classList.add('hide'), 7000);
+    })();
+  </script>
 </body>
 </html>

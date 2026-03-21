@@ -18,7 +18,7 @@
     <a href="#hero" class="nav-brand">M. <span>Czerwiński</span></a>
     <ul class="nav-links">
       <li><a href="index.html" class="nav-active">Hej!</a></li>
-      <li><a href="dejcie-spokol.html">Dejcie Spokój</a></li>
+      <li><a href="dejcie-spokoj.html">Dejcie Spokój</a></li>
       <li><a href="aktywnosci.html">Moje aktywności</a></li>
       <li><a href="kontakt.html">Kontakt</a></li>
     </ul>
@@ -28,7 +28,20 @@
       </svg>
       516 875 013
     </a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Otwórz menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-links"></div>
+    <a href="tel:+48516875013" class="mobile-menu-phone">
+      <svg width="16" height="16" viewBox="0 0 13 13" fill="none">
+        <path d="M2 2h2.5l1 2.5-1.5 1.5c.9 1.8 2 2.9 3.8 3.8L9.5 8.5 12 9.5v2.5C7 13 0 6 2 2z" fill="#d64030"/>
+      </svg>
+      516 875 013
+    </a>
+  </div>
 
   <!-- ═══════════════════════════════════════════
        HERO
@@ -132,10 +145,8 @@
         </p>
 
         <div class="hero-actions">
-          <a href="#contact" class="btn-red">Skontaktuj się</a>
-          <a href="#services" class="btn-ghost">
-            Poznaj ofertę <span class="arr">→</span>
-          </a>
+          <a href="#services" class="btn-red">Poznaj ofertę <span class="arr">→</span></a>
+          <a href="https://heligonki.pl" target="_blank" rel="noopener" class="btn-ghost">Kup sobie nuty</a>
         </div>
       </div>
     </div>
@@ -203,11 +214,11 @@
 
         <div class="about-stat-row">
           <div class="about-stat">
-            <div class="stat-num">15+</div>
+            <div class="stat-num" data-count="15">0+</div>
             <span class="stat-lbl">Lat doświadczenia</span>
           </div>
           <div class="about-stat">
-            <div class="stat-num">300+</div>
+            <div class="stat-num" data-count="300">0+</div>
             <span class="stat-lbl">Uczniów</span>
           </div>
         </div>
@@ -410,7 +421,7 @@
       </a>
 
       <!-- Card 6 -->
-      <a href="dejcie-spokol.html" class="card fade-up d2">
+      <a href="dejcie-spokoj.html" class="card fade-up d2">
         <div class="card-icon">
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="14" r="5" stroke="#b83228" stroke-width="1.2" stroke-opacity="0.5"/>
@@ -436,7 +447,8 @@
   <!-- ═══════════════════════════════════════════
        CONTACT
   ════════════════════════════════════════════ -->
-  <section id="contact">
+  <section id="contact" style="position:relative;">
+    <div class="music-bubbles" id="contactBubbles"></div>
     <div class="contact-inner fade-up">
       <div class="contact-ornament">
         <svg width="100" height="28" viewBox="0 0 100 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -462,35 +474,23 @@
       </p>
 
       <div class="contact-cta">
-        <a href="tel:+48516875013" class="contact-phone">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 3h4l2 4-2.5 2c1.5 3 3.5 5 6.5 6.5L15 13l4 2v4c-10 1.5-18-6.5-16-16z" fill="#fff" fill-opacity="0.15" stroke="#fff" stroke-width="1"/>
-          </svg>
-          516 875 013
-        </a>
-        <div class="contact-links">
-          <a href="#contact" class="contact-link">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 3h12v9H1zM1 3l6 5 6-5" stroke="#b83228" stroke-width="1" fill="none"/>
+        <div style="display:flex;align-items:center;gap:16px;justify-content:center;flex-wrap:nowrap;">
+          <a href="tel:+48516875013" class="contact-phone">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 3h4l2 4-2.5 2c1.5 3 3.5 5 6.5 6.5L15 13l4 2v4c-10 1.5-18-6.5-16-16z" fill="#fff" fill-opacity="0.15" stroke="#fff" stroke-width="1"/>
             </svg>
-            Napisz do mnie
+            516 875 013
           </a>
+          <a href="kontakt.html" class="contact-phone-ghost">Napisz do mnie</a>
+        </div>
+        <div class="contact-links">
           <a href="https://www.youtube.com/@heligonkapl/featured" target="_blank" rel="noopener noreferrer" class="contact-link">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="1" y="2" width="12" height="9" rx="1" stroke="#b83228" stroke-width="1" fill="none"/>
-              <path d="M4 5.5l2.5 2 2.5-2" stroke="#b83228" stroke-width="1" stroke-linecap="round"/>
-              <line x1="4" y1="8" x2="6" y2="8" stroke="#b83228" stroke-width="1"/>
-              <polygon points="9,11 14,8 14,14" fill="#b83228"/>
-            </svg>
+            <img src="brand_assets/icons/YouTube.svg" width="22" height="16" alt="YouTube" style="display:block;">
             YouTube
           </a>
-          <a href="#" class="contact-link">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="1" y="1" width="12" height="12" rx="3" stroke="#b83228" stroke-width="1"/>
-              <circle cx="7" cy="7" r="2.5" stroke="#b83228" stroke-width="1"/>
-              <circle cx="10.5" cy="3.5" r="0.75" fill="#b83228"/>
-            </svg>
-            Instagram
+          <a href="https://www.facebook.com/profile.php?id=100090272505042" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <img src="brand_assets/icons/Facebook.svg" width="18" height="18" alt="Facebook" style="display:block;">
+            Facebook
           </a>
         </div>
       </div>
